@@ -1,20 +1,22 @@
-export const categories = [
+import type { CategoryType } from "@/types/CategoryType";
+
+export const categories: CategoryType[] = [
   {
     id: "cat-1",
     name: "Men",
     slug: "men",
-    image: "/images/categories/men.jpg",
+    image: "/image/man.jpg",
   },
   {
     id: "cat-2",
     name: "Women",
     slug: "women",
-    image: "/images/categories/women.jpg",
+    image: "/image/woman.jpg",
   },
   {
     id: "cat-3",
     name: "Kids",
     slug: "kids",
-    image: "/images/categories/kids.jpg",
+    image: "/image/kid.jpg",
   },
 ];

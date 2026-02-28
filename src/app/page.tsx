@@ -1,7 +1,14 @@
 import React from "react";
+import Hero from "./Components/Hero";
+import Category from "./Components/Category";
 
 const page = () => {
-  return <div className="text-2xl font-bold text-center mt-10">Home page</div>;
+  return (
+    <div>
+      <Hero />
+      <Category />
+    </div>
+  );
 };
 
 export default page;

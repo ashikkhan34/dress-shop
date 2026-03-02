@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import logo from "../../asset/logo.png";
 import { usePathname } from "next/navigation";
 import { Heart, Menu, ShoppingCart, X } from "lucide-react";
+import { useFavorite } from "../hooks/useFavorite";
 
 interface NavItem {
   name: string;
@@ -21,6 +22,7 @@ const navItems: NavItem[] = [
 const Navbar = () => {
   const [open, setOpen] = useState<boolean>(false);
   const pathName = usePathname();
+  const { favorites } = useFavorite();
   return (
     <header className=" sticky top-0 z-50 bg-gray-200/50 shadow-md ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
@@ -65,7 +67,7 @@ const Navbar = () => {
           <div className="flex items-center gap-4 ">
             <div className="relative">
               <div className="absolute -top-3 -right-3 bg-red-100 text-black rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                0
+                {favorites.length}
               </div>
               <button>
                 <Heart className="text-red-500" />

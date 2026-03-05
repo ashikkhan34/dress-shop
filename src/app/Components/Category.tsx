@@ -3,7 +3,6 @@
 import { CategoryType } from "@/types/CategoryType";
 import { categories } from "@/api/categories";
 import type { JSX } from "react";
-import Link from "next/link";
 
 const Category = (): JSX.Element => {
   const categoryList: CategoryType[] = categories;

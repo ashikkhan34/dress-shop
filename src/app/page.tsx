@@ -4,6 +4,9 @@ import Category from "./Components/Category";
 import { Products } from "./Components/Products/Products";
 import Hero_tow from "./Components/Hero_tow";
 import Offer from "./Components/Offer";
+import TrendingDress from "./Components/TrendingDress";
+import AboutShop from "./Components/AboutShop";
+import Accordion from "./Components/Accordion";
 
 const page = () => {
   return (
@@ -13,6 +16,9 @@ const page = () => {
       <Products />
       <Hero_tow />
       <Offer />
+      <TrendingDress />
+      <AboutShop />
+      <Accordion />
     </div>
   );
 };

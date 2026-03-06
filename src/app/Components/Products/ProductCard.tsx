@@ -1,6 +1,7 @@
 import { useFavorite } from "@/app/hooks/useFavorite";
 import type { ProductsType } from "@/types/ProductsType";
 import { DecimalsArrowRight, MessageCircleHeart } from "lucide-react";
+import Link from "next/link";
 
 type ProductCardProps = { product: ProductsType };
 
@@ -30,9 +31,11 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           >
             {isFavorite ? <MessageCircleHeart /> : <MessageCircleHeart />}
           </button>
-          <button className="bg-black/30 text-white px-4 py-2 rounded hover:bg-gray-700 transition-colors ml-2">
-            <DecimalsArrowRight />
-          </button>
+          <Link href={`/ProductDetails/${product.id}`}>
+            <button className="bg-black/30 text-white px-4 py-2 rounded hover:bg-gray-700 transition-colors ml-2">
+              <DecimalsArrowRight />
+            </button>
+          </Link>
         </div>
       </div>
       <h3 className="font-medium flex justify-between items-center ">

@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./Shared/Navbar";
 import Footer from "./Shared/Footer";
 import { FavoriteProvider } from "./hooks/useFavorite";
+import { CartProvider } from "./hooks/useCart";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,11 +31,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <FavoriteProvider>
-          <Navbar />
-          {children}
-          <Footer />
-        </FavoriteProvider>
+        <CartProvider>
+          <FavoriteProvider>
+            <Navbar />
+            {children}
+            <Footer />
+          </FavoriteProvider>
+        </CartProvider>
       </body>
     </html>
   );

@@ -1,7 +1,7 @@
 export interface ProductVariant {
   color: string;
   size: string;
-  image: string;
+  image?: string;
 }
 
 export interface ProductsType {
@@ -9,8 +9,8 @@ export interface ProductsType {
   name: string;
   slug: string;
   description: string;
-  price: number;
-  discountPrice?: number;
+  price?: string;
+  discountPrice?: string;
   category: string;
   brand: string;
   stock: number;

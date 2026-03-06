@@ -6,6 +6,7 @@ import logo from "../../asset/logo.png";
 import { usePathname } from "next/navigation";
 import { Heart, Menu, ShoppingCart, X } from "lucide-react";
 import { useFavorite } from "../hooks/useFavorite";
+import { useCart } from "../hooks/useCart";
 
 interface NavItem {
   name: string;
@@ -23,6 +24,8 @@ const Navbar = () => {
   const [open, setOpen] = useState<boolean>(false);
   const pathName = usePathname();
   const { favorites } = useFavorite();
+  const { cartItems } = useCart();
+  console.log(cartItems);
   return (
     <header className=" sticky top-0 z-50 bg-gray-200/50 shadow-md ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
@@ -75,7 +78,7 @@ const Navbar = () => {
             </div>
             <div className="relative">
               <div className="absolute -top-2 -right-2 bg-red-100 text-black rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                0
+                {cartItems.length}
               </div>
               <button>
                 <ShoppingCart />

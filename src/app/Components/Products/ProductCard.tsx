@@ -2,6 +2,7 @@ import { useFavorite } from "@/app/hooks/useFavorite";
 import type { ProductsType } from "@/types/ProductsType";
 import { DecimalsArrowRight, MessageCircleHeart } from "lucide-react";
 import Link from "next/link";
+import Swal from "sweetalert2";
 
 type ProductCardProps = { product: ProductsType };
 
@@ -10,8 +11,27 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   const isFavorite = favorites.some((item) => item.id === product.id);
 
   const toggleFavorite = () => {
-    if (isFavorite) removeFromFavorite(product.id);
-    else addToFavorite(product);
+    if (isFavorite) {
+      removeFromFavorite(product.id);
+
+      Swal.fire({
+        position: "top-end",
+        icon: "info",
+        title: "Removed from Favorite",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      addToFavorite(product);
+
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Added to Favorite",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
   };
 
   return (

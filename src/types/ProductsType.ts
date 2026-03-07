@@ -9,8 +9,8 @@ export interface ProductsType {
   name: string;
   slug: string;
   description: string;
-  price?: string;
-  discountPrice?: string;
+  price: number;
+  discountPrice?: number;
   category: string;
   brand: string;
   stock: number;

@@ -7,8 +7,10 @@ import { usePathname } from "next/navigation";
 import { ArchiveX, Heart, Menu, ShoppingCart, X } from "lucide-react";
 import { useFavorite } from "../hooks/useFavorite";
 import { useCart } from "../hooks/useCart";
-import Modal from "../Components/Modal";
+import Modal from "../Components/FavoriteModal";
 import Swal from "sweetalert2";
+import type { ProductsType } from "@/types/ProductsType";
+import CardModal from "../Components/CardModal";
 
 interface NavItem {
   name: string;
@@ -27,10 +29,16 @@ const Navbar = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const pathName = usePathname();
   const { favorites, removeFromFavorite } = useFavorite();
-  const { cartItems, addToCart } = useCart();
-  console.log(cartItems);
+  const { cartItems, removeFromCart, addToCart } = useCart();
+  console.log("favorites:", favorites);
+  console.log("cartItems:", cartItems);
 
-  const handleAddToCart = (item: any) => {
+  const [openCartModal, setOpenCartModal] = useState<boolean>(false);
+  const handleOpenCartModal = () => {
+    setOpenCartModal(true);
+  };
+
+  const handleAddToCart = (item: ProductsType) => {
     addToCart(item);
     Swal.fire({
       position: "top-end",
@@ -40,7 +48,7 @@ const Navbar = () => {
       timer: 1500,
     });
   };
-  const handleDeleteFavorite = (id: number) => {
+  const handleDeleteFavorite = (id: string) => {
     removeFromFavorite(id);
     Swal.fire({
       position: "top-end",
@@ -50,6 +58,7 @@ const Navbar = () => {
       timer: 1500,
     });
   };
+
   return (
     <>
       <header className=" sticky top-0 z-50 bg-gray-200/50 shadow-md ">
@@ -98,24 +107,27 @@ const Navbar = () => {
                   {favorites.length}
                 </div>
                 <button onClick={() => setOpenModal(true)}>
-                  <Heart className="text-red-500" />
+                  <Heart className="text-red-500 cursor-pointer" />
                 </button>
               </div>
               <div className="relative">
                 <div className="absolute -top-2 -right-2 bg-red-100 text-black rounded-full w-5 h-5 flex items-center justify-center text-xs">
                   {cartItems.length}
                 </div>
-                <button>
+                <button
+                  className="cursor-pointer"
+                  onClick={handleOpenCartModal}
+                >
                   <ShoppingCart />
                 </button>
               </div>
-              <button className="px-4 py-1 hover:border-blue-700 hover:border-2 border border-blue-300 rounded-md">
+              <button className="px-4 py-1 hover:border-blue-700 hover:border-2 border border-blue-300 rounded-md cursor-pointer">
                 Login
               </button>
 
               {/* mobile menu button */}
               <button
-                className="pointer md:hidden"
+                className="cursor-pointer md:hidden"
                 onClick={() => setOpen(!open)}
               >
                 {open ? <X /> : <Menu />}
@@ -154,6 +166,8 @@ const Navbar = () => {
           </ul>
         </div>
       </header>
+
+      {/* favorite modal */}
       <Modal isOpen={openModal} onClose={() => setOpenModal(false)}>
         <h2 className="text-xl font-bold mb-3">
           Favorite Items ({favorites.length})
@@ -166,7 +180,7 @@ const Navbar = () => {
               <li key={item.id} className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <Image
-                    src={item?.variants[0]?.image || ""}
+                    src={item?.variants?.[0]?.image || ""}
                     alt={item.name}
                     width={50}
                     height={50}
@@ -198,8 +212,12 @@ const Navbar = () => {
           </ul>
         )}
       </Modal>
+
+      {/* cart modal */}
+      <CardModal isOpen={openCartModal} onClose={() => setOpenCartModal(false)}>
+        {/* Cart content will be rendered inside CardModal */}
+      </CardModal>
     </>
   );
 };
-
 export default Navbar;

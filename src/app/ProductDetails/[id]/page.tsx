@@ -5,7 +5,7 @@ import { products } from "@/api/products";
 import { useState } from "react";
 import Image from "next/image";
 import { useCart } from "@/app/hooks/useCart";
-import type { ProductsType } from "@/types/ProductsType";
+import type { ProductsType, ProductVariant } from "@/types/ProductsType";
 import Swal from "sweetalert2";
 import { useFavorite } from "@/app/hooks/useFavorite";
 
@@ -16,15 +16,19 @@ const ProductDetailsPage = () => {
 
   const product = products.find((p) => p.id === id);
 
-  const [selectedVariant, setSelectedVariant] = useState(product?.variants[0]);
-  const [selectedSize, setSelectedSize] = useState(product?.variants[0]?.size);
-  const [quantity, setQuantity] = useState(1);
+  const [selectedVariant, setSelectedVariant] = useState<
+    ProductVariant | undefined
+  >(product?.variants?.[0]);
+  const [selectedSize, setSelectedSize] = useState<string | undefined>(
+    product?.variants?.[0]?.size,
+  );
+  const [quantity, setQuantity] = useState<number>(1);
 
   if (!product) {
     return <p>Product Not Found</p>;
   }
 
-  const totalPrice = (product?.discountPrice || 0) * quantity;
+  const totalPrice = (product?.discountPrice || product?.price || 0) * quantity;
 
   // quantity functions
   const increaseQty = () => {
@@ -54,16 +58,27 @@ const ProductDetailsPage = () => {
       rating: product.rating,
       reviewCount: product.reviewCount,
       isFeatured: product.isFeatured,
-      variants: product.variants,
+
+      quantity: quantity || 1,
+
+      variants: [
+        {
+          color: selectedVariant?.color || "",
+          size: selectedSize || "",
+          image: selectedVariant?.image,
+        },
+      ],
     };
+
+    addToCart(cartItem);
+
     Swal.fire({
       position: "top-end",
       icon: "success",
-      title: "Your work has been saved",
+      title: "Product added to cart",
       showConfirmButton: false,
       timer: 1500,
     });
-    addToCart(cartItem);
   };
 
   const handleAddtoFavorite = () => {
@@ -81,6 +96,7 @@ const ProductDetailsPage = () => {
       reviewCount: product.reviewCount,
       isFeatured: product.isFeatured,
       variants: product.variants,
+      quantity: quantity,
     };
     Swal.fire({
       position: "top-end",
@@ -111,7 +127,7 @@ const ProductDetailsPage = () => {
             <h3 className="font-semibold mb-2">Color</h3>
 
             <div className="flex gap-3 flex-wrap">
-              {product.variants.map((variant, index) => (
+              {product?.variants?.map((variant, index) => (
                 <button
                   key={index}
                   onClick={() => {
@@ -160,7 +176,7 @@ const ProductDetailsPage = () => {
             <h3 className="font-semibold mb-2">Size</h3>
 
             <div className="flex gap-3 flex-wrap">
-              {product.variants.map((variant, index) => (
+              {product?.variants?.map((variant, index) => (
                 <button
                   key={index}
                   onClick={() => setSelectedSize(variant.size)}

@@ -7,6 +7,7 @@ import type { ProductsType } from "@/types/ProductsType";
 import { DecimalsArrowRight, MessageCircleHeart } from "lucide-react";
 import { useState } from "react";
 import { ProductCard } from "./ProductCard";
+import Link from "next/link";
 
 export const Products = () => {
   const categoryList: CategoryType[] = categories;
@@ -55,10 +56,18 @@ export const Products = () => {
 
       {/* Products Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {filteredProducts.map((product) => (
+        {filteredProducts.slice(0, 8).map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
+      <Link
+        href="/products"
+        className="flex mx-auto items-center justify-center mt-6"
+      >
+        <button className="px-4 py-2  transition-transform duration-700 hover:scale-x-110 bg-blue-500 text-white rounded flex items-center gap-2  hover:bg-blue-600">
+          View All Products <DecimalsArrowRight className="ml-2 " />
+        </button>
+      </Link>
     </div>
   );
 };

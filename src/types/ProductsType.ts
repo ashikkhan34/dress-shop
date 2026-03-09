@@ -17,5 +17,6 @@ export interface ProductsType {
   rating: number;
   reviewCount: number;
   isFeatured: boolean;
-  variants: ProductVariant[];
+  variants?: ProductVariant[];
+  quantity?: number; // Optional property for cart items
 }

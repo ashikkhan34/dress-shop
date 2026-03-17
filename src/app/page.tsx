@@ -7,6 +7,7 @@ import Offer from "./Components/Offer";
 import TrendingDress from "./Components/TrendingDress";
 import AboutShop from "./Components/AboutShop";
 import Accordion from "./Components/Accordion";
+import ReviewPage from "./Components/ReviewPage";
 
 const page = () => {
   return (
@@ -19,6 +20,7 @@ const page = () => {
       <TrendingDress />
       <AboutShop />
       <Accordion />
+      <ReviewPage />
     </div>
   );
 };

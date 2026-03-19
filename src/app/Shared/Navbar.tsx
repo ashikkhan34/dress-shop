@@ -4,13 +4,14 @@ import Link from "next/link";
 import React, { useState } from "react";
 import logo from "../../asset/logo.png";
 import { usePathname } from "next/navigation";
-import { ArchiveX, Heart, Menu, ShoppingCart, X } from "lucide-react";
+import { ArchiveX, Heart, LogOut, Menu, ShoppingCart, X } from "lucide-react";
 import { useFavorite } from "../hooks/useFavorite";
 import { useCart } from "../hooks/useCart";
 import Modal from "../Components/FavoriteModal";
 import Swal from "sweetalert2";
 import type { ProductsType } from "@/types/ProductsType";
 import CardModal from "../Components/CardModal";
+import { signOut, useSession } from "next-auth/react";
 
 interface NavItem {
   name: string;
@@ -58,6 +59,9 @@ const Navbar = () => {
       timer: 1500,
     });
   };
+
+  const { data: session } = useSession();
+  console.log("GitHub Session:", session);
 
   return (
     <>
@@ -121,9 +125,33 @@ const Navbar = () => {
                   <ShoppingCart />
                 </button>
               </div>
-              <button className="px-4 py-1 hover:border-blue-700 hover:border-2 border border-blue-300 rounded-md cursor-pointer">
-                Login
-              </button>
+              <div>
+                {session ? (
+                  <span className="text-sm text-gray-700  flex items-center gap-2">
+                    {/* {session.user?.name || "User"} */}
+                    <img
+                      src={session.user?.image || ""}
+                      alt={session.user?.name || "User Avatar"}
+                      width={30}
+                      height={30}
+                      className="rounded-full"
+                    />
+                    <button
+                      title="Log Out"
+                      onClick={() => signOut()}
+                      className="px-4 py-1 border-red-700 hover:border-2 border rounded-md cursor-pointer"
+                    >
+                      <LogOut className="text-red-500" />
+                    </button>
+                  </span>
+                ) : (
+                  <Link href="/login">
+                    <button className="px-4 py-1 hover:border-blue-700 hover:border-2 border border-blue-300 rounded-md cursor-pointer">
+                      Login
+                    </button>
+                  </Link>
+                )}
+              </div>
 
               {/* mobile menu button */}
               <button

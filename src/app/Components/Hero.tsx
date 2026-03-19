@@ -6,6 +6,7 @@ import heroImg from "../../asset/slider1.webp";
 import heroImg2 from "../../asset/slider2.webp";
 import heroImg3 from "../../asset/slider3.webp";
 import { CircleArrowLeft, CircleArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const heroData = [
   {
@@ -62,12 +63,16 @@ const Hero = () => {
                 {item.description}
               </p>
               <div className="mt-6 flex gap-4">
-                <button className="px-4 py-2 border-2 border-black hover:bg-black hover:text-white transition-all ease-in-out duration-500">
-                  Shop Now
-                </button>
-                <button className="px-4 py-2 border-2 border-black hover:bg-black hover:text-white transition-all ease-in-out duration-500">
-                  Read More
-                </button>
+                <Link href="/products">
+                  <button className="px-4 py-2 border-2 border-black hover:bg-black hover:text-white transition-all ease-in-out duration-500">
+                    Shop Now
+                  </button>
+                </Link>
+                <Link href="/service">
+                  <button className="px-4 py-2 border-2 border-black hover:bg-black hover:text-white transition-all ease-in-out duration-500">
+                    Read More
+                  </button>
+                </Link>
               </div>
             </div>
             <div className=" mt-12 items-center flex justify-between px-5 absolute w-full">

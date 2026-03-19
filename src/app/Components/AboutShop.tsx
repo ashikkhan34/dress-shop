@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import shop1 from "../../asset/shop1 (1).jpg";
 import shop2 from "../../asset/shop1 (2).jpg";
+import Link from "next/link";
 
 const AboutShop = () => {
   return (
@@ -66,13 +67,17 @@ const AboutShop = () => {
 
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
-            <button className="px-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition duration-300 shadow-md">
-              Learn More
-            </button>
+            <Link href="/service">
+              <button className="px-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition duration-300 shadow-md">
+                Learn More
+              </button>
+            </Link>
 
-            <button className="px-6 py-3 border border-black rounded-full hover:bg-black hover:text-white transition duration-300">
-              Contact Us
-            </button>
+            <Link href="/contact" className="inline-block">
+              <button className="px-6 py-3 border border-black rounded-full hover:bg-black hover:text-white transition duration-300">
+                Contact Us
+              </button>
+            </Link>
           </div>
         </div>
       </div>

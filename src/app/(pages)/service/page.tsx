@@ -11,6 +11,7 @@ import {
   CheckCircle2,
   ChevronRight,
 } from "lucide-react";
+import Link from "next/link";
 
 // --- Types ---
 interface ServiceProps {
@@ -83,9 +84,11 @@ const ServicePage: React.FC = () => {
             From red-carpet alterations to custom-made bridal dreams, we provide
             artisanal craftsmanship tailored to your unique silhouette.
           </p>
-          <button className="bg-rose-600 hover:bg-rose-700 text-white px-10 py-4 rounded-full font-medium transition-all transform hover:scale-105">
-            Book a Consultation
-          </button>
+          <Link href="/products">
+            <button className="bg-rose-600 hover:bg-rose-700 text-white px-10 py-4 rounded-full font-medium transition-all transform hover:scale-105">
+              Book Your Favorite Dress
+            </button>
+          </Link>
         </div>
       </section>
 
@@ -210,12 +213,16 @@ const ServicePage: React.FC = () => {
             DressShop.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-slate-900 text-white px-8 py-4 rounded-full font-bold hover:bg-slate-800 transition-colors">
-              Book Appointment
-            </button>
-            <button className="bg-white border border-slate-200 text-slate-900 px-8 py-4 rounded-full font-bold hover:bg-slate-50 transition-colors">
-              Contact Support
-            </button>
+            <Link href="/products">
+              <button className="bg-slate-900 text-white px-8 py-4 rounded-full font-bold hover:bg-slate-800 transition-colors">
+                Buy Favorite Dress
+              </button>
+            </Link>
+            <Link href="/contact">
+              <button className="bg-white border border-slate-200 text-slate-900 px-8 py-4 rounded-full font-bold hover:bg-slate-50 transition-colors">
+                Contact Support
+              </button>
+            </Link>
           </div>
         </div>
       </section>

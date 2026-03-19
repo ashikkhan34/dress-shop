@@ -102,7 +102,7 @@ const ContactPage: React.FC = () => {
               href="tel:+1234567890"
               className="text-rose-600 font-semibold text-lg"
             >
-              +1 (234) 567-890
+              +880 1817553134
             </a>
           </div>
 
@@ -128,7 +128,7 @@ const ContactPage: React.FC = () => {
               Experience the fabrics in person.
             </p>
             <address className="not-italic font-semibold text-slate-700">
-              123 Fashion Ave, NY 10001
+              AK Fashion Pabna Rd, 6600, Bangladesh
             </address>
           </div>
         </div>

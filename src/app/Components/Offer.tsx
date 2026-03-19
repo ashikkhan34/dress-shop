@@ -1,4 +1,5 @@
 import { ChevronRight } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 const offers = [
@@ -30,9 +31,11 @@ const Offer = () => {
           >
             <h3 className="font-bold">{offer.title}</h3>
             <p className="text-sm text-gray-200">{offer.description}</p>
-            <button className="flex items-center text-white font-semibold cursor-pointer mt-2">
-              Shop Now <ChevronRight className="ml-1" />
-            </button>
+            <Link href="/products" className="self-start mt-4">
+              <button className="flex items-center hover:text-blue-400 underline text-white font-semibold cursor-pointer mt-2">
+                Shop Now <ChevronRight className="ml-1" />
+              </button>
+            </Link>
 
             {/* Vertical line except last item */}
             {index !== offers.length - 1 && (

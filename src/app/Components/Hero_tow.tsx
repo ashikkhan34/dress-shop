@@ -1,6 +1,7 @@
 import React from "react";
 import img from "../../asset/section-bgimage1.webp";
 import Image from "next/image";
+import Link from "next/link";
 const Hero_tow = () => {
   return (
     <div className="relative mt-10">
@@ -19,9 +20,11 @@ const Hero_tow = () => {
           <h1 className="text-white text-2xl md:text-4xl font-semibold">
             Shop For Great Selection Of T-Shirts
           </h1>
-          <button className=" bg-indigo-600 text-white px-6 py-2 rounded-md font-semibold hover:bg-indigo-900 cursor-pointer transition-colors duration-300">
-            Shop Now
-          </button>
+          <Link href="/products" className="block mt-4">
+            <button className=" bg-indigo-600 text-white px-6 py-2 rounded-md font-semibold hover:bg-indigo-900 cursor-pointer transition-colors duration-300">
+              Shop Now
+            </button>
+          </Link>
         </div>
       </div>
     </div>

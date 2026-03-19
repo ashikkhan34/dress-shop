@@ -13,8 +13,11 @@
     "lucide": "^0.575.0",
     "lucide-react": "^0.575.0",
     "next": "16.1.6",
+    "next-auth": "^4.24.13",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-hook-form": "^7.71.2",
+    "react-icons": "^5.6.0",
     "sweetalert2": "^11.26.21",
     "swiper": "^12.1.2"
   },
